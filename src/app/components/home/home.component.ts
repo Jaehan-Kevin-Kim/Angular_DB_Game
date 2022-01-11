@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Game } from 'src/app/models';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,8 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public sort: string = ''
-  constructor() { }
+  // public games: Array<Game>;
+  constructor(public games: Array<Game>) { }
 
 
 
