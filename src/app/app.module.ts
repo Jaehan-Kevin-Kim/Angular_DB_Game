@@ -35,11 +35,11 @@ import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor'
     GaugeModule.forRoot(),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpHeadersInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpHeadersInterceptor,
+    //   multi: true,
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
