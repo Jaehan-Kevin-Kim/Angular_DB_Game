@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Game } from '../../models';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -9,10 +9,10 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   gameRating: number = 0;
   gameId: string = "";
-  game: Game | undefined;
+  game: Game;
   routeSub: Subscription | undefined;
   gameSub: Subscription | undefined;
 
@@ -47,6 +47,11 @@ export class DetailsComponent implements OnInit {
     } else {
       return '#ef4655'
     }
+  }
+
+  ngOnDestroy(): void {
+    this.routeSub?.unsubscribe();
+    this.gameSub?.unsubscribe();
   }
 
 }

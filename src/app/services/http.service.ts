@@ -12,7 +12,6 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-
   getGameList(
     ordering: string,
     search?: string
@@ -21,16 +20,15 @@ export class HttpService {
     if (search) {
       params = new HttpParams().set('ordering', ordering).set('search', search);
     }
-
     return this.http.get<APIResponse<Game>>(`${env.BASE_URL}/games?key=${env.API}`, { params: params });
 
   }
 
 
-  getGameDetails(id: number): Observable<Game> {
-    const gameInfoRequest = this.http.get<Game>(`${env.BASE_URL}/games/${id}`);
-    const gameTrailerRequest = this.http.get(`${env.BASE_URL}/${id}/movies`);
-    const gameScreenShotsRequest = this.http.get(`${env.BASE_URL}/games/${id}/screenshots`);
+  getGameDetails(id: string): Observable<Game> {
+    const gameInfoRequest = this.http.get<Game>(`${env.BASE_URL}/games/${id}?key=${env.API}`);
+    const gameTrailerRequest = this.http.get(`${env.BASE_URL}/games/${id}/movies?key=${env.API}`);
+    const gameScreenShotsRequest = this.http.get(`${env.BASE_URL}/games/${id}/screenshots?key=${env.API}`);
 
     return forkJoin({
       gameInfoRequest,
