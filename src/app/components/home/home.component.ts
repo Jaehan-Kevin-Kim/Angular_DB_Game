@@ -12,13 +12,13 @@ import { HttpService } from 'src/app/services/http.service';
 export class HomeComponent implements OnInit, OnDestroy {
   public sort: string = ''
   public games: Array<Game> = [];
+  private routeSub: Subscription | undefined;
+  private gameSub: Subscription | undefined;
 
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private routeSub: Subscription,
-    private gameSub: Subscription
   ) { }
 
 
@@ -48,11 +48,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.gameSub) {
-
       this.gameSub.unsubscribe();
     }
     if (this.routeSub) {
-
       this.routeSub.unsubscribe();
     }
   }
