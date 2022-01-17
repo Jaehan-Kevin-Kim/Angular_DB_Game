@@ -31,10 +31,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
   getGameDetails(id: string): void {
     this.gameSub = this.httpService.getGameDetails(id).subscribe((gameResp: Game) => {
       this.game = gameResp;
+      console.log(gameResp);
       setTimeout(() => {
         this.gameRating = this.game?.metacritic || 0;
       }, 1000);
     });
+
   }
 
   getColor(value: number): string {
